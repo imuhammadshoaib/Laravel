@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +22,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+//Route::get('/users', function () {
+//    return view('users');
+//})->middleware(['auth'])->name('users');
+
+Route::get('/users', [UserController::class, 'show'])->middleware(['auth'])->name('users');
 
 require __DIR__.'/auth.php';
