@@ -25,7 +25,10 @@
                                     <div class="font-semibold text-left">Email</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Created At</div>
+                                    <div class="font-semibold text-left">Role ID</div>
+                                </th>
+                                <th class="p-2 whitespace-nowrap">
+                                    <div class="font-semibold text-left">Active</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Action</div>
@@ -45,7 +48,10 @@
                                         <div class="text-left">{{ $user->email }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left font-medium text-green-500">{{ $user->created_at }}</div>
+                                        <div class="text-left font-medium text-green-500">{{ $user->role_id }}</div>
+                                    </td>
+                                    <td class="p-2 whitespace-nowrap">
+                                        <div class="text-left font-medium text-green-500">{{ $user->is_active }}</div>
                                     </td>
                                 </tr>
                             @endforeach
