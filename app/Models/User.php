@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
+        'is_active',
     ];
 
     /**
@@ -41,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the phone associated with the user.
+     */
+    public function role()
+    {
+        return $this->hasOne(Role::class, 'id', 'role_id');
+    }
 }

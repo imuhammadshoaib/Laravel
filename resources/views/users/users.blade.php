@@ -1,8 +1,13 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
-        </h2>
+    <x-slot name="header" >
+        <div class="h-56 grid grid-cols-3 gap-4 content-start" style="display: flex;    justify-content: space-between;">
+            <h2 class=" font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Users') }}
+            </h2>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('create') }}" style="background-color: #000;float:right;">Add User</a>
+            </div>
+        </div>
     </x-slot>
 <!-- component -->
 <div class="py-12">
@@ -25,7 +30,7 @@
                                     <div class="font-semibold text-left">Email</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Role ID</div>
+                                    <div class="font-semibold text-left">Role</div>
                                 </th>
                                 <th class="p-2 whitespace-nowrap">
                                     <div class="font-semibold text-left">Active</div>
@@ -48,10 +53,20 @@
                                         <div class="text-left">{{ $user->email }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left font-medium text-green-500">{{ $user->role_id }}</div>
+                                        <div class="text-left font-medium text-green-500">{{ $user->role->name }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left font-medium text-green-500">{{ $user->is_active }}</div>
+                                        <div class="text-left font-medium text-green-500">{{ $user->is_active ? 'Active' : 'Inactive' }}</div>
+                                    </td>
+                                    <td class="p-2 whitespace-nowrap">
+                                        <form action="" method="POST">
+                                            <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: blue;" href="{{ route('edit',$user->id) }}">Edit</a>
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <a type="submit" href="{{ route('destroy', $user->id) }}" style="background-color: red;" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

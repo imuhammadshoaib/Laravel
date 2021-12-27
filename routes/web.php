@@ -28,5 +28,11 @@ Route::get('/dashboard', function () {
 //})->middleware(['auth'])->name('users');
 
 Route::get('/users', [UserController::class, 'show'])->middleware(['auth'])->name('users');
+Route::get('/create', [UserController::class, 'create'])->middleware(['auth'])->name('create');
+Route::get('/edit/{id}', [UserController::class, 'edit'])->middleware(['auth'])->name('edit');
+Route::post('/update/{id}', [UserController::class, 'update'])->middleware(['auth'])->name('update');
+Route::get('/destory/{id}', [UserController::class, 'destroy'])->middleware(['auth'])->name('destroy');
+Route::post('/store', [UserController::class, 'store'])->middleware(['auth'])->name('store');
+
 
 require __DIR__.'/auth.php';
