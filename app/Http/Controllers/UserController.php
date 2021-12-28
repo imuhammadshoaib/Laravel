@@ -41,11 +41,8 @@ class UserController extends Controller
         return view('users.edit', $user);
 
         $role['roles'] = Role::all();
-        dd(roles);
         $selectedRole = User::first()->role_id;
         return view('users.edit', compact('roles', 'selectedRole'));
-
-      //  return view('users.create', $role);
     }
 
     /**
