@@ -5,10 +5,57 @@
                 {{ __('Products') }}
             </h2>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('create') }}" style="background-color: #000;float:right;">Add Product</a>
+                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('products.create') }}" style="background-color: #000;float:right;">Add Product</a>
             </div>
         </div>
     </x-slot>
+    <style>
+        .hide {
+            -moz-animation: cssAnimation 0s ease-in 5s forwards;
+            /* Firefox */
+            -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+            /* Safari and Chrome */
+            -o-animation: cssAnimation 0s ease-in 5s forwards;
+            /* Opera */
+            animation: cssAnimation 0s ease-in 5s forwards;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        @keyframes cssAnimation {
+            to {
+                width:0;
+                height:0;
+                overflow:hidden;
+            }
+        }
+        @-webkit-keyframes cssAnimation {
+            to {
+                width:0;
+                height:0;
+                visibility:hidden;
+            }
+        }
+    </style>
+    <!-- component -->
+@if ($message = Session::get('success'))
+    <!-- Success Component -->
+        <div  class="hide h-screen absolute top-0 right-0 py-3 z-40 px-3">
+            <div class="m-auto">
+                <div class="bg-white rounded-lg border-gray-300 border p-3 shadow-lg">
+                    <div class="flex flex-row">
+                        <div class="px-2">
+                            <svg width="24" height="24" viewBox="0 0 1792 1792" fill="#44C997" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1299 813l-422 422q-19 19-45 19t-45-19l-294-294q-19-19-19-45t19-45l102-102q19-19 45-19t45 19l147 147 275-275q19-19 45-19t45 19l102 102q19 19 19 45t-19 45zm141 83q0-148-73-273t-198-198-273-73-273 73-198 198-73 273 73 273 198 198 273 73 273-73 198-198 73-273zm224 0q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
+                            </svg>
+                        </div>
+                        <div class="ml-2 mr-6">
+                            <span class="font-semibold">{{ $message }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endif
     <!-- component -->
     <div class="py-12">
         <section class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -48,7 +95,7 @@
                                     <tr>
                                         <td class="p-2 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src={{ $product->product_image }} width="40" height="40" alt="Alex Shatov"></div>
+                                                <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" src="/images/{{$product->product_image}}" width="40" height="40" alt={{ $product->product_name }}></div>
                                             </div>
                                         </td>
                                         <td class="p-2 whitespace-nowrap">
@@ -64,13 +111,14 @@
 {{--                                            <div class="text-left font-medium text-green-500">{{ $product->is_active  ? 'Active' : 'Inactive' }}</div>--}}
 {{--                                        </td>--}}
                                         <td class="p-2 whitespace-nowrap">
-                                            <form action="" method="POST">
-                                                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('edit',$product->id) }}">Edit</a>
+                                            <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('products.show',$product->id) }}">view</a>
+                                                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('products.edit',$product->id) }}">Edit</a>
 
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <a type="submit" href="{{ route('destroy', $product->id) }}" style="background-color: black;" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</a>
+                                                <button type="submit" style="background-color: black;" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Add User') }}
+            {{ __('Edit Product') }}
         </h2>
     </x-slot>
 
@@ -20,44 +20,37 @@
                 @endif
                 <div class="mt-10 sm:mt-0">
                     <header class="p-6 bg-white border-b border-gray-200" style="margin-bottom:15px;">
-                        <h2 class="font-semibold text-gray-800">Add Users Details</h2>
+                        <h2 class="font-semibold text-gray-800">Add Product Details</h2>
                     </header>
                     <div class="w-full">
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="{{ route('store') }}" method="POST">
+                            <form action="{{ route('products.update',$products->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="shadow overflow-hidden sm:rounded-md">
                                     <div class="px-4 py-5 bg-white sm:p-6">
                                         <div class="grid grid-cols-6 gap-6">
                                             <div class="col-span-6 sm:col-span-3">
-                                                <label for="name" class="block text-sm font-medium text-gray-700">First name</label>
-                                                <input type="text" name="name" autocomplete="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-
-                                            <div class="col-span-6 sm:col-span-4">
-                                                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                                                <input type="text" name="email" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                            </div>
-
-                                            <div class="col-span-6 sm:col-span-4">
-                                                <label for="pass" class="block text-sm font-medium text-gray-700">Password</label>
-                                                <input type="password" name="pass" autocomplete="pass" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <label for="product_name" class="block text-sm font-medium text-gray-700">Product name</label>
+                                                <input type="text" value="{{$products->product_name}}" name="product_name" autocomplete="product_name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
-                                                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                                                <select name="role" autocomplete="role" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                    @foreach($roles as $getrole)
-                                                        <option value="{!! $getrole->id !!}">{!! $getrole->name  !!}</option>
-                                                    @endforeach
-                                                </select>
+                                                <label for="product_price" class="block text-sm font-medium text-gray-700">Product Price</label>
+                                                <input type="number" value="{{$products->product_price}}" name="product_price" autocomplete="product_price" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
-                                                <label for="is-active" class="block text-sm font-medium text-gray-700">Status</label>
-                                                <input type="number" name="is_active" autocomplete="pass" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-
+                                                <img src="/images/{{$products->product_image}}" alt="{{$products->product_name}}" class="rounded-full mb-4" width="80" height="80">
+                                                <label for="product_name" class="block text-sm font-medium text-gray-700">Select Product Image</label>
+                                                <input type="file"  name="product_image" autocomplete="product_image" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300">
                                             </div>
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="product_desc" class="block text-sm font-medium text-gray-700">Product Description</label>
+                                                <input type="text" value="{{$products->product_desc}}" name="product_desc" autocomplete="product_desc" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+
                                         </div>
                                     </div>
                                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6" style="float:right; margin:15px 0;">

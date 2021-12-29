@@ -27,7 +27,7 @@ class UserController extends Controller
     public function create()
     {
         $role['roles'] = Role::all();
-        return view('users.create', $role);
+        return view('users.create', $role)->with('success','User created successfully.');
     }
 
     /**
@@ -96,7 +96,7 @@ class UserController extends Controller
         $data->update($request->all());
 
         return redirect()->route('users')
-            ->with('success','Product updated successfully');
+            ->with('success','User updated successfully');
     }
 
     /**
