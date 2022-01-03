@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Installation Guide
+
+1. Clone `git clone https://github.com/imuhammadshoaib/Laravel.git`
+2. cd laravel(folder) run command `composer install`
+3. Run command `npm install`
+4. Create a copy of your .env file run command `cp .env.example .env`
+5. Create new empty Database e.g (test)
+6. In the .env file fill in the `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` options to match the credentials of the database you just created.
+7. Migrate the database run command `php artisan migrate`
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
