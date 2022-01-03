@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -38,7 +39,11 @@ Route::resource('products', ProductController::class);
 Route::get('/', [ProductController::class, 'frontend']);
 Route::get('/productdetails/{id}', [ProductController::class, 'productdetails'])->name('productdetails');
 
+//Roles Route
+Route::resource('roles', RoleController::class);
 
+//User Update trough query
+//Route::get('changepassword', function() { $user = \App\Models\User::where('email', 'muhammad.shoaib@technologyally.com')->first(); $user->password = Hash::make('admin12345'); $user->save();  echo 'Password changed successfully.'; });
 
 
 require __DIR__.'/auth.php';

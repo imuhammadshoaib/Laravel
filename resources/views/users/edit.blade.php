@@ -39,8 +39,18 @@
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">
-                                                <label for="pass" class="block text-sm font-medium text-gray-700">Password</label>
-                                                <input type="password" value="{{$user->password}}" name="password" autocomplete="pass" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <label for="current_password" class="block text-sm font-medium text-gray-700">Current Password</label>
+                                                <input type="text" value="{{$user->password}}" name="current_password" autocomplete="current_password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="new_password" class="block text-sm font-medium text-gray-700">New Password</label>
+                                                <input type="text"  name="password" autocomplete="password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                            </div>
+
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="confirm_password" class="block text-sm font-medium text-gray-700">Comfirm Password</label>
+                                                <input type="text"  name="confirm_password" autocomplete="confirm_password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
                                             <div class="col-span-6 sm:col-span-3">

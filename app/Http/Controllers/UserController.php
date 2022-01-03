@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -73,13 +75,14 @@ class UserController extends Controller
         ]);
         $data = $request->all();
         $data['role_id'] = $request['role'];
-        $data['password'] = $request['pass'];
+        $data['password'] = Hash::make($request['pass']);
         $data['is_active'] = $request['is_active'];
         User::create($data);
 
         return redirect()->route('users')
             ->with('success','User created successfully.');
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -94,18 +97,22 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'role_id' => 'required',
-            'is_active' => 'required'
+            'is_active' => 'required',
+            'current_password' => 'required',
+            'password' => 'required|same:confirm_password|min:6',
+            'confirm_password' => 'required'
         ]);
-
+//        $getpass = $request->password;
+//        $addhash = Hash::make($getpass);
+//        dd($addhash);
         $data = User::find($id);
         $data->name = $request->name;
-        $data->password = $request->password;
         $data->is_active = $request->is_active;
-        $data->password = $request->password;
         $data->email = $request->email;
+        $data->password = Hash::make($request->password);
         $data->role_id = $request->role_id;
-
-        $data->update($request->all());
+//        dd($data);
+        $data->save();
 
         return redirect()->route('users')
             ->with('success','User updated successfully');
