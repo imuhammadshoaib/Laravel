@@ -106,6 +106,7 @@
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <form action="" method="POST">
+                                            <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('profile',$user->id) }}">View</a>
                                             <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('edit',$user->id) }}">Edit</a>
 
                                             @csrf

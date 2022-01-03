@@ -34,12 +34,12 @@
                                                 <input type="text" name="name" autocomplete="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
-                                            <div class="col-span-6 sm:col-span-4">
+                                            <div class="col-span-6 sm:col-span-3">
                                                 <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
                                                 <input type="text" name="email" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
 
-                                            <div class="col-span-6 sm:col-span-4">
+                                            <div class="col-span-6 sm:col-span-3">
                                                 <label for="pass" class="block text-sm font-medium text-gray-700">Password</label>
                                                 <input type="password" name="pass" autocomplete="pass" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
@@ -55,8 +55,10 @@
 
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="is-active" class="block text-sm font-medium text-gray-700">Status</label>
-                                                <input type="number" name="is_active" autocomplete="pass" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-
+                                                <select name="is_active" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        <option value="1">InActive</option>
+                                                        <option value="1">Active</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

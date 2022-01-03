@@ -76,10 +76,22 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function frontend(int $id)
+    public function frontend()
     {
         $products = Product::all();
         return view('welcome', ['products' =>$products]);
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     */
+    public function productdetails($id)
+    {
+        $product = Product::find($id);
+        return view('products.productdetails', ['products' =>$product]);
 
     }
 

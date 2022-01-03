@@ -20,13 +20,27 @@ class UserController extends Controller
     }
 
     /**
+     * Show the user view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function profile($id)
+    {
+        $user['user'] = User::find($id);
+        $user['roles'] = Role::all();
+        return view('users.view', $user);
+    }
+
+    /**
      * Create new User
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
+
         $role['roles'] = Role::all();
+        $role['statuses'] = ['InActive', 'Active'];
         return view('users.create', $role)->with('success','User created successfully.');
     }
 
@@ -38,11 +52,9 @@ class UserController extends Controller
     public function edit(int $id, Role $role)
     {
         $user['user'] = User::find($id);
+        $user['roles'] = Role::all();
+        $user['statuses'] = ['InActive', 'Active'];
         return view('users.edit', $user);
-
-        $role['roles'] = Role::all();
-        $selectedRole = User::first()->role_id;
-        return view('users.edit', compact('roles', 'selectedRole'));
     }
 
     /**

@@ -20,7 +20,7 @@
                 @endif
                 <div class="mt-10 sm:mt-0">
                     <header class="p-6 bg-white border-b border-gray-200" style="margin-bottom:15px;">
-                        <h2 class="font-semibold text-gray-800">Add Product Details</h2>
+                        <h2 class="font-semibold text-gray-800">Edit Product Details</h2>
                     </header>
                     <div class="w-full">
                         <div class="mt-5 md:mt-0 md:col-span-2">
