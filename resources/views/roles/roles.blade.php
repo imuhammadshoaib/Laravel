@@ -79,12 +79,19 @@
                                         <div class="font-semibold text-left">Count</div>
                                     </th>
                                     <th class="p-2 whitespace-nowrap">
+                                        <div class="font-semibold text-left">Active</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
                                         <div class="font-semibold text-left">Actions</div>
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody class="text-sm divide-y divide-gray-100">
+
                                 @foreach ($roles as $role)
+{{--                                    @foreach($role->getuser as $gotuser)--}}
+{{--                                        {{$gotuser->name}}--}}
+{{--                                    @endforeach--}}
                                     <tr>
                                         <td class="p-2 whitespace-nowrap">
                                             <div class="flex items-center">
@@ -95,7 +102,10 @@
                                             <div class="text-left font-medium">{{ $role->is_active ? 'Active' : 'Inactive' }}</div>
                                         </td>
                                         <td class="p-2 whitespace-nowrap">
-                                            <div class="text-left font-medium">{{ $role->id }}</div>
+                                            <div class="text-left font-medium">{{ $role->users->count() }}</div>
+                                        </td>
+                                        <td class="p-2 whitespace-nowrap">
+                                            <div class="text-left font-medium">{{ $role->activeUsers->count() }}</div>
                                         </td>
                                         <td class="p-2 whitespace-nowrap">
                                             <form action="{{ route('roles.destroy', $role->id) }}" method="POST">

@@ -19,8 +19,13 @@ class Role extends Model
         'is_active',
     ];
 
-    public function getuser()
+    public function users()
     {
         return $this->hasMany(User::class, 'role_id', 'id');
+    }
+
+    public function activeUsers()
+    {
+        return $this->hasMany(User::class, 'role_id', 'id')->where('is_active', 1);
     }
 }
