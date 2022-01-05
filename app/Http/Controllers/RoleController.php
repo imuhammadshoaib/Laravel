@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,7 +57,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -90,6 +89,12 @@ class RoleController extends Controller
         $data = Role::find($id);
         $data->name = $request->name;
         $data->is_active = $request->is_active;
+        foreach ($data->users as $user)
+        {
+            $user = User::find($user->id);
+            $user->is_active = $request->is_active;
+            $user->save();
+        }
         $data->save();
 
         return redirect()->route('roles.index')
@@ -100,14 +105,19 @@ class RoleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        $data = Role::find($id);
-        $data->delete();
+        $role = Role::find($id);
+        foreach ($role->users as $user)
+        {
+            $user = User::find($user->id);
+            $user->delete();
+        }
+        $role->delete();
 
         return redirect()->route('roles.index')
-            ->with('success','Product deleted successfully');
+            ->with('success','Role deleted successfully');
     }
 }

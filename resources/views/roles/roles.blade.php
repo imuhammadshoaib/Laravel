@@ -76,10 +76,10 @@
                                         <div class="font-semibold text-left">Active</div>
                                     </th>
                                     <th class="p-2 whitespace-nowrap">
-                                        <div class="font-semibold text-left">Count</div>
+                                        <div class="font-semibold text-left">User Count</div>
                                     </th>
                                     <th class="p-2 whitespace-nowrap">
-                                        <div class="font-semibold text-left">Active</div>
+                                        <div class="font-semibold text-left">User Active</div>
                                     </th>
                                     <th class="p-2 whitespace-nowrap">
                                         <div class="font-semibold text-left">Actions</div>
@@ -89,9 +89,6 @@
                                 <tbody class="text-sm divide-y divide-gray-100">
 
                                 @foreach ($roles as $role)
-{{--                                    @foreach($role->getuser as $gotuser)--}}
-{{--                                        {{$gotuser->name}}--}}
-{{--                                    @endforeach--}}
                                     <tr>
                                         <td class="p-2 whitespace-nowrap">
                                             <div class="flex items-center">
@@ -109,7 +106,7 @@
                                         </td>
                                         <td class="p-2 whitespace-nowrap">
                                             <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
-{{--                                                <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('profile',$role->id) }}">View</a>--}}
+{{--                                            <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('profile',$role->id) }}">View</a>--}}
                                                 <a class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="background-color: black;" href="{{ route('roles.edit',$role->id) }}">Edit</a>
 
                                                 @csrf
